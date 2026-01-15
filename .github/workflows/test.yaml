@@ -1,11 +1,6 @@
 name: Test & Deploy
 on: [push,workflow_dispatch]
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Lint 
-        run: npm run lint
   test:
     runs-on: ubuntu-latest
     steps:
@@ -19,6 +14,11 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint 
+        run: npm run lint
   deploy:
     needs: test
     runs-on: ubuntu-latest
